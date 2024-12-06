@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   scan_ruby:
@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Install FreeTDS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y freetds-dev
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -29,6 +34,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install FreeTDS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y freetds-dev
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -43,6 +53,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Install FreeTDS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y freetds-dev
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -65,6 +80,11 @@ jobs:
     steps:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips sqlite3
+
+      - name: Install FreeTDS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y freetds-dev
 
       - name: Checkout code
         uses: actions/checkout@v4
