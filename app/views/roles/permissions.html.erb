@@ -1,0 +1,18 @@
+
+<div class="container">
+    <h5>Associate Permissions With Role</h5>
+	<%= form_for :permission, url: store_permissions_url(@role), method: :post do |f| %>
+		<% @permissions.each do |permission| %>
+			<div class="mb-2">
+<%= check_box_tag 'permission_ids[]', permission.id, 
+@select_permission_ids.include?(permission.id), id: "permission_#{permission.id}" %>
+		        <label for=<%= "permission_#{permission.id}" %>><%= permission.name %></span>
+		    </div>
+		<% end %>
+
+	    <div class="mb-2">
+	        <%= f.submit 'Associate Permissions' %>
+	    </div>
+	<% end %>
+
+</div>
