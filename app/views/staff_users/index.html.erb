@@ -29,8 +29,9 @@
 			<td>
 				<%= staf_user.role&.name %>
 			</td>
-           
-
+           <td>
+             <%= link_to 'Edit', edit_staff_user_path(staf_user)  %>
+           </td>
 		</tr>
 		<% end %>
 	</table>
