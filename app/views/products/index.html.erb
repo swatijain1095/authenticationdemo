@@ -1,0 +1,32 @@
+<div class="container">
+    <h5>Product List</h5>
+    <table class="table table-striped" style="width:70%">
+        <thead style="width:70%">
+            <tr>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <% @products.each do |product| %>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.sku %></td>
+                <td><%= product.price %></td>
+                <td>
+                    <% if is_authorize(current_admin, 2) %>
+                        <%= link_to 'Edit', edit_product_path(product)  %>
+                    <% end %>
+                    <% if is_authorize(current_admin, 3) %>
+                         | <%= link_to 'Delete', product_path(product), method: :delete  %>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+
+    <% if is_authorize(current_admin, 1) %>
+        <p><%= link_to 'Create Product', new_product_path %></p>
+    <% end %>
+</div>

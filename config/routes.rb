@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get "products/index"
+  get "products/new"
+  get "products/create"
+  get "products/edit"
+  get "products/update"
+  get "products/destroy"
   devise_for :admins, controllers: { sessions: 'admins/sessions', registrations: 'admins/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -22,6 +28,7 @@ Rails.application.routes.draw do
   resources :staff_users
   resources :customers, only: [:edit, :update]
   resources :dashboard, only: [:index]
+  resources :products
   root "dashboard#index"
 
 end
