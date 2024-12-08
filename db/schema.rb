@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_06_222305) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_08_163942) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -121,6 +121,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_06_222305) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "permission_roles", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.bigint "permission_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permission_id"], name: "index_permission_roles_on_permission_id"
+    t.index ["role_id"], name: "index_permission_roles_on_role_id"
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -133,4 +148,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_06_222305) do
   add_foreign_key "employeecertificates", "employeeinfos"
   add_foreign_key "employees", "countries"
   add_foreign_key "employees", "departments"
+  add_foreign_key "permission_roles", "permissions"
+  add_foreign_key "permission_roles", "roles"
 end
