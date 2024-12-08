@@ -1,0 +1,37 @@
+
+<div class="container">
+	<h5>Staff User List</h5>
+	<table class="table table-striped" style="width:70%">
+		<thead style="width:70%">
+			<tr>
+				<th>Username</th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Email</th>
+				<th>Role</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<% @staff_users.each do |staf_user| %>
+		<tr>
+			<td>
+				<%= staf_user.username %>
+			</td>
+			<td>
+				<%= staf_user.first_name %>
+			</td>
+			<td>
+				<%= staf_user.last_name %>
+			</td>
+			<td>
+				<%= staf_user.email %>
+			</td>
+			<td>
+				<%= staf_user.role&.name %>
+			</td>
+           
+
+		</tr>
+		<% end %>
+	</table>
+</div>

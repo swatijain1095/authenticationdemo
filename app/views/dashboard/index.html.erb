@@ -2,6 +2,7 @@
 
 <% if admin_signed_in? && current_admin.super_admin? %>
 	<%= link_to "Roles", roles_path, class: 'btn btn-primary mt-4' %>
+  <%= link_to "Staff Users", staff_users_path, class: 'btn btn-primary ml-4 mt-4' %>
 <% end %>
 
 <% if admin_signed_in? && !current_admin.super_admin? %>
