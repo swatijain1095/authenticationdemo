@@ -1,7 +1,7 @@
 class StaffUsersController < ApplicationController
   before_action :authenticate_admin!
   before_action :fetch_roles
-  before_action :find_staff_user, only: [:edit, :update]
+  before_action :find_staff_user, only: [:edit, :update, :destroy]
   def index
     @staff_users = Admin.staff_user
   end
@@ -33,6 +33,16 @@ class StaffUsersController < ApplicationController
       redirect_to staff_user_path(@staff_user)
     end
   end
+
+  def destroy
+		if @staff_user.destroy
+			flash[:notice] = 'Staff user deleted successfully'
+		else
+			flash[:notice] = @staff_user.errors.full_messages.join(",")
+		end
+		redirect_to staff_users_path
+	end
+
 
   def find_staff_user
 		@staff_user = Admin.staff_user.find_by id: params[:id]
