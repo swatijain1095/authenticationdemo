@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
   before_action :authenticate_admin!
-  before_action :find_role, only: [:edit, :update]
+  before_action :find_role, only: [:edit, :update, :destroy]
   def index
     @roles = Role.all
   end
@@ -33,6 +33,15 @@ class RolesController < ApplicationController
 			redirect_to role_path(@role)
 		end
 	end
+
+  def destroy
+    if @role.destroy
+      flash[:notice] = 'Role deleted successfully'
+    else
+      flash[:notice] = @role.errors.full_messages.join(",")
+    end
+    redirect_to roles_path
+  end
 
   def find_role
     @role = Role.find_by id: params[:id]

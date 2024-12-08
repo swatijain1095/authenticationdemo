@@ -14,7 +14,8 @@
 				<%= role.name %>
 			</td>			
       <td>
-        <%= link_to 'Edit', edit_role_path(role)  %> 
+        <%= link_to 'Edit', edit_role_path(role)  %> |
+        <%= button_to 'Delete', role_path(role), method: :delete, class: 'btn btn-link p-0 mb-1 text-primary', form: { class: 'd-inline' }  %>  
       </td>
 		</tr>
 		<% end %>
